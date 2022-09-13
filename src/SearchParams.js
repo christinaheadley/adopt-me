@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import useBreedList from "./useBreedList";
 import Pet from "./Pet";
 
 const ANIMALS = ["bird", "cat", "dog", "rabbit", "reptile"];
@@ -8,12 +9,14 @@ const SearchParams = () => {
   const [animal, setAnimal] = useState("");
   const [breed, setBreed] = useState("");
   const [pets, setPets] = useState([]);
-  const breeds = [];
+  // one liner above vs three lines:
+  // const petHook = useState();
+  // const pets = petHook[0];
+  // const setPets = petHooks[1];
+  const [breeds] = useBreedList(animal);
 
-  // This function will be called outside of (after) the render. Registering a function to be called later.
   useEffect(() => {
     requestPets();
-    // call again whenever [item] happens. Array of dependent variables -- fx called when item in this array changes. An empty array just calls it once after render. If no array included, calls API everytime anything changes/ way too often.
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   async function requestPets() {
@@ -41,7 +44,6 @@ const SearchParams = () => {
               setAnimal(e.target.value);
               setBreed("");
             }}
-            // set onBlur bc sometimes when browsers navigate away from a select, they do not fire the change event
             onBlur={(e) => {
               setAnimal(e.target.value);
               setBreed("");
