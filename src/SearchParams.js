@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Pet from "./Pet";
 
 const ANIMALS = ["bird", "cat", "dog", "rabbit", "reptile"];
 
@@ -6,12 +7,24 @@ const SearchParams = () => {
   const [location, setLocation] = useState("");
   const [animal, setAnimal] = useState("");
   const [breed, setBreed] = useState("");
-  const breeds = [
-    "Australian Sheperd/ Border Collie mix",
-    "medium-hair",
-    "orange tabby",
-    "poodle",
-  ];
+  const [pets, setPets] = useState([]);
+  const breeds = [];
+
+  // This function will be called outside of (after) the render. Registering a function to be called later.
+  useEffect(() => {
+    requestPets();
+    // call again whenever [item] happens. Array of dependent variables -- fx called when item in this array changes. An empty array just calls it once after render. If no array included, calls API everytime anything changes/ way too often.
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  async function requestPets() {
+    const res = await fetch(
+      `http://pets-v2.dev-apis.com/pets?animal=${animal}&location=${location}&breed=${breed}`
+    );
+    const json = await res.json();
+
+    setPets(json.pets);
+  }
+
   return (
     <div className="search-params">
       <form>
@@ -65,6 +78,14 @@ const SearchParams = () => {
         </label>
         <button>Submit</button>
       </form>
+      {pets.map((pet) => (
+        <Pet
+          name={pet.name}
+          animal={pet.animal}
+          breed={pet.breed}
+          key={pet.id}
+        />
+      ))}
     </div>
   );
 };
