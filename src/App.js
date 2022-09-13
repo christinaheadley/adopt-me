@@ -1,18 +1,19 @@
 import { render } from "react-dom";
-import SearchParams from "./Pet";
+import SearchParams from "./SearchParams";
 
 const App = () => {
   return (
     <div>
       <h1>Adopt Me!</h1>
+      <SearchParams />
       {/* or <Pet...></Pet> */}
-      <Pet name="Berlioz" animal="cat" breed="medium-hair" />
+      {/* <Pet name="Berlioz" animal="cat" breed="medium-hair" />
       <Pet name="Blush" animal="cat" breed="orange tabby" />
       <Pet
         name="Rusty"
         animal="dog"
         breed="Australian Sheperd/ Border Collie mix"
-      />
+      /> */}
     </div>
   );
 };
