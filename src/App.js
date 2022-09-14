@@ -9,6 +9,7 @@ const App = () => {
     <StrictMode>
       <BrowserRouter>
         <header>
+          {/* Link needs to be inside BrowserRouter or will throw href error */}
           <Link to="/">Adopt Me!</Link>
         </header>
         <Routes>

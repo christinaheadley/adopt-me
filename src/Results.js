@@ -1,7 +1,6 @@
 import Pet from "./Pet";
 
 const Results = ({ pets }) => {
-  // same as const pets = params.pets
   return (
     <div>
       {!pets.length ? (

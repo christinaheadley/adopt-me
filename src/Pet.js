@@ -1,6 +1,5 @@
-// could also write out const Pet = (props) => {
-// ...
-// {props.animal} - {props.breed} - {props.location}
+// prefer Link components over a tags when using internal site links
+import { Link } from "react-router-dom";
 
 const Pet = ({ name, animal, breed, images, location, id }) => {
   let hero = "http://pets-images.dev-apis.com/pets/none.jpg";
@@ -9,7 +8,7 @@ const Pet = ({ name, animal, breed, images, location, id }) => {
   }
 
   return (
-    <a href={`/details/${id}`} className="pet">
+    <Link to={`/details/${id}`} className="pet">
       <div className="image-container">
         <img src={hero} alt={name} />
       </div>
@@ -19,7 +18,7 @@ const Pet = ({ name, animal, breed, images, location, id }) => {
           {animal} - {breed} - {location}
         </h2>
       </div>
-    </a>
+    </Link>
   );
 };
 
