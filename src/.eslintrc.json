@@ -7,7 +7,6 @@
     "plugin:react-hooks/recommended",
     "prettier"
   ],
-  // prettier must come last to shut off rules from other configs
   "rules": {
     "react/prop-types": 0,
     "react/react-in-jsx-scope": 0

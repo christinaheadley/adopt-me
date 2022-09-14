@@ -1,4 +1,3 @@
-// prefer Link components over a tags when using internal site links
 import { Link } from "react-router-dom";
 
 const Pet = ({ name, animal, breed, images, location, id }) => {

@@ -28,7 +28,7 @@ const SearchParams = () => {
     <div className="search-params">
       <form
         onSubmit={(e) => {
-          e.preventDefault(); // otherwise does a post back to self and submits html form
+          e.preventDefault();
           requestPets();
         }}
       >
