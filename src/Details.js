@@ -28,7 +28,11 @@ class Details extends Component {
         <div>
           <h1>{name}</h1>
           <h2>{`${animal} — ${breed} — ${city}, ${state}`}</h2>
-          <button>Adopt {name}</button>
+          <ThemeContext.Consumer>
+            {([theme]) => (
+              <button style={{ backgroundColor: theme }}>Adopt {name}</button>
+            )}
+          </ThemeContext.Consumer>
           <p>{description}</p>
         </div>
       </div>
@@ -39,7 +43,6 @@ class Details extends Component {
 const WrappedDetails = () => {
   const params = useParams();
   return (
-    // ErrorBoundary has to live above Details or it would get wrapped up in errored item and not work
     <ErrorBoundary>
       <Details params={params} />
     </ErrorBoundary>
