@@ -39,6 +39,7 @@ class Details extends Component {
 const WrappedDetails = () => {
   const params = useParams();
   return (
+    // ErrorBoundary has to live above Details or it would get wrapped up in errored item and not work
     <ErrorBoundary>
       <Details params={params} />
     </ErrorBoundary>
